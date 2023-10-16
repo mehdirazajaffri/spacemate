@@ -41,7 +41,7 @@ class Property(BaseModel):
 
 
 class Room(BaseModel):
-    property = models.ForeignKey('Property', on_delete=models.CASCADE)
+    property = models.ForeignKey("Property", on_delete=models.CASCADE)
     title = models.CharField(max_length=255)
     description = models.TextField()
     room_type = models.CharField(max_length=100)
@@ -49,7 +49,7 @@ class Room(BaseModel):
     is_available = models.BooleanField(default=True)
     max_beds = models.PositiveIntegerField()
     vacant_beds = models.PositiveIntegerField()
-    amenities = models.ManyToManyField('Amenity', blank=True)
+    amenities = models.ManyToManyField("Amenity", blank=True)
     available_from = models.DateField()
 
     def __str__(self):
@@ -61,9 +61,11 @@ class Room(BaseModel):
 
 
 class Image(BaseModel):
-    property = models.ForeignKey('Property', on_delete=models.CASCADE, blank=True, null=True)
+    property = models.ForeignKey(
+        "Property", on_delete=models.CASCADE, blank=True, null=True
+    )
     room = models.ForeignKey(Room, on_delete=models.CASCADE, blank=True, null=True)
-    image = models.ImageField(upload_to='property_images')
+    image = models.ImageField(upload_to="property_images")
     is_featured = models.BooleanField(default=False)
     name = models.CharField(max_length=255, blank=True, null=True)
 
@@ -87,11 +89,13 @@ class Booking(BaseModel):
     is_checked_out = models.BooleanField(default=False)
     is_paid = models.BooleanField(default=False)
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    paid_amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    paid_amount = models.DecimalField(
+        max_digits=10, decimal_places=2, blank=True, null=True
+    )
     payment_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
-        return self.room.title if self.room else ''
+        return self.room.title if self.room else ""
 
     class Meta:
         verbose_name = "Booking"
