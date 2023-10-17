@@ -1084,6 +1084,9 @@ components:
           allOf:
           - $ref: '#/components/schemas/User'
           readOnly: true
+        owner_id:
+          type: integer
+          writeOnly: true
         created_at:
           type: string
           format: date-time
@@ -1141,6 +1144,12 @@ components:
           allOf:
           - $ref: '#/components/schemas/Room'
           readOnly: true
+        is_moderated:
+          type: boolean
+          readOnly: true
+        room_id:
+          type: integer
+          writeOnly: true
         created_at:
           type: string
           format: date-time
@@ -1158,8 +1167,6 @@ components:
           type: integer
         comment:
           type: string
-        is_moderated:
-          type: boolean
     PatchedRoom:
       type: object
       properties:
@@ -1273,6 +1280,9 @@ components:
           allOf:
           - $ref: '#/components/schemas/User'
           readOnly: true
+        owner_id:
+          type: integer
+          writeOnly: true
         created_at:
           type: string
           format: date-time
@@ -1326,6 +1336,7 @@ components:
       - id
       - location
       - owner
+      - owner_id
       - price
       - title
       - updated_at
@@ -1343,6 +1354,12 @@ components:
           allOf:
           - $ref: '#/components/schemas/Room'
           readOnly: true
+        is_moderated:
+          type: boolean
+          readOnly: true
+        room_id:
+          type: integer
+          writeOnly: true
         created_at:
           type: string
           format: date-time
@@ -1360,16 +1377,16 @@ components:
           type: integer
         comment:
           type: string
-        is_moderated:
-          type: boolean
       required:
       - comment
       - created_at
       - deleted_at
       - guest
       - id
+      - is_moderated
       - rating
       - room
+      - room_id
       - updated_at
     Room:
       type: object

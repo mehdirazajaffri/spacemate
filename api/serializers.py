@@ -12,6 +12,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class PropertySerializer(serializers.ModelSerializer):
     owner = UserSerializer(read_only=True)
+    owner_id = serializers.PrimaryKeyRelatedField(write_only=True, queryset=UserProfile.objects.all(), source="owner")
 
     class Meta:
         model = Property
@@ -47,7 +48,13 @@ class BookingSerializer(serializers.ModelSerializer):
 class ReviewSerializer(serializers.ModelSerializer):
     guest = UserSerializer(read_only=True)
     room = RoomSerializer(read_only=True)
+    is_moderated = serializers.BooleanField(read_only=True)
+    room_id = serializers.PrimaryKeyRelatedField(write_only=True, queryset=Room.objects.all(), source="room")
 
     class Meta:
         model = Review
         fields = "__all__"
+
+    def create(self, validated_data):
+        validated_data["guest"] = UserProfile.objects.get(user=self.context["request"].user)
+        return super().create(validated_data)

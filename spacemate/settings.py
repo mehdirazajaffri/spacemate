@@ -26,9 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://c351-2001-8f8-1b2f-be5e-9cf9-1aa7-38e6-7203.ngrok-free.app"
-]
+CSRF_TRUSTED_ORIGINS = ["https://9e96-94-202-123-63.ngrok-free.app"]
 
 # Application definition
 
@@ -39,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django_extensions",
     "rest_framework",
     "django_filters",
     "drf_spectacular",
