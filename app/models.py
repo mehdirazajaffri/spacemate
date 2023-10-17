@@ -51,6 +51,7 @@ class Room(BaseModel):
     vacant_beds = models.PositiveIntegerField()
     amenities = models.ManyToManyField("Amenity", blank=True)
     available_from = models.DateField()
+    restriction = models.CharField(max_length=255, blank=True, null=True)
 
     def __str__(self):
         return self.title

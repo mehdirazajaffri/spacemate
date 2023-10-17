@@ -2,6 +2,10 @@ from django.contrib import admin
 
 from app.models import Amenity, Property, Room, Booking, Image
 
+admin.site.site_header = "SpaceMate Admin"
+admin.site.site_title = "SpaceMate Admin Portal"
+admin.site.index_title = "Welcome to SpaceMate Admin Portal"
+
 
 class BaseAdmin(admin.ModelAdmin):
     list_display = ("id", "created_at", "updated_at")
